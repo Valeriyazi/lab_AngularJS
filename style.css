@@ -1,0 +1,81 @@
+html, body
+{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-family: Helvetica;
+}
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #c8a2c8;
+    border-radius: .3rem;
+}
+.order
+{
+	padding: 60px;
+}
+
+button
+{
+	border: none;
+	border-radius: 10px;
+	background-color: #947394;
+	color: #ffffff;
+	padding: 6px 10px;
+	margin: 4px;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Helvetica ;
+	cursor: pointer;
+}
+button:hover
+{
+	color: #ffffff;
+	background-color: #ac87ac;
+}
+
+section
+{
+	display: flex;
+	justify-content: center;
+	align-content: space-between;
+}
+
+section > div
+{
+	padding: 20px;
+}
+.choice > div
+{
+	cursor: pointer;
+}
+.choice > div:hover
+{
+	color: #ffffff;
+	background-color: #947394;
+}
+
+section > div > img
+{
+	width: 200px;
+}
+
+form
+{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 20% 100px;
+	padding: 20px 0 60px 0;
+	align-content: space-between;
+	align-items: center;
+}
+form > input, form > select
+{
+	padding: 4px 8px;
+	margin: 2px;
+	width: 200px;
+	box-sizing: border-box;
+}

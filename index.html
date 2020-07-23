@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Angular 2</title>
+		<link rel="stylesheet" href="bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body class="text-center" ng-app="angular2" ng-controller="mainController">
+		<div class="jumbotron">
+			<h1>Clothes order </h1>
+			<form action="">
+				<label>In stock</label>
+				<section class="choice">
+					<div ng-click="showGlasses = true; showSneakers = false; showDress = false; changeMenu();"
+						 style="{{showGlasses==true?'background-color: #f1f1f1':''}}"
+						>Glasses</div>
+					<div ng-click="showGlasses = false; showSneakers = true; showDress = false; changeMenu();"
+						 style="{{showSneakers==true?'background-color: #f1f1f1':''}}"
+						>Sneakers</div>
+					<div ng-click="showGlasses = false; showSneakers = false; showDress = true; changeMenu();"
+						 style="{{showDress==true?'background-color: #f1f1f1':''}}"
+						>Dress</div>
+				</section>
+			</form>
+			<h2>You are looking {{current.page}}</h2>
+			<section ng-show="showGlasses">
+				<div>
+					<h3>Glasses 1</h3>
+					<p>{{glasses1.price}} BYN</p>
+					<img src="glasses1.jpg" alt="">
+					<p>Quantity: {{glasses1.amount}}</p>
+					<button ng-click="add(glasses1)">+</button>
+					<button ng-click="remove(glasses1)">-</button>
+				</div>
+				<div>
+					<h3>Glasses 2</h3>
+					<p>{{glasses2.price}} BYN</p>
+					<img src="glasses2.jpg" alt="">
+					<p>Quantity: {{glasses2.amount}}</p>
+					<button ng-click="add(glasses2)">+</button>
+					<button ng-click="remove(glasses2)">-</button>
+				</div>
+			</section>
+
+			<section ng-show="showSneakers">
+				<div>
+					<h3>Sneakers 1</h3>
+					<p>{{sneakers1.price}} BYN</p>
+					<img src="sneakers1.jpg" alt="">
+					<p>Quantity: {{sneakers1.amount}}</p>
+					<button ng-click="add(sneakers1)">+</button>
+					<button ng-click="remove(sneakers1)">-</button>
+				</div>
+				<div>
+					<h3>Sneakers 2 </h3>
+					<p>{{sneakers2.price}} BYN</p>
+					<img src="sneakers2.jpg" alt="">
+					<p>Quantity: {{sneakers2.amount}}</p>
+					<button ng-click="add(sneakers2)">+</button>
+					<button ng-click="remove(sneakers2)">-</button>
+				</div>
+			</section>
+
+			<section ng-show="showDress">
+				<div>
+					<h3>Dress 1</h3>
+					<p>{{dress1.price}} BYN</p>
+					<img src="dress1.jpg" alt="">
+					<p>Quantity: {{dress1.amount}}</p>
+					<button ng-click="add(dress1)">+</button>
+					<button ng-click="remove(dress1)">-</button>
+				</div>
+				<div>
+					<h3>Dress 2</h3>
+					<p>{{dress2.price}} BYN</p>
+					<img src="dress2.jpg" alt="">
+					<p>Quantity: {{dress2.amount}}</p>
+					<button ng-click="add(dress2)">+</button>
+					<button ng-click="remove(dress2)">-</button>
+				</div>
+			</section>
+
+			<h2>Order (total cost: {{total}} BYN)</h2>
+			<form name="orderForm">
+				<label>Name (required field)</label>
+				<input name="orderName" ng-model="orderName" type="text" required>
+				<label>Address (required field)</label>
+				<input name="orderAddress" ng-model="orderAddress" type="text" required>
+				<label>Phone (required field)</label>
+				<input name="orderPhone" ng-model="orderPhone" type="phone" required>
+				
+				<button ng-show="orderForm.orderName.$valid && orderForm.orderAddress.$valid && orderForm.orderPhone.$valid" ng-click="order()">Order now</button>
+				<p ng-show="orderForm.orderName.$invalid || orderForm.orderAddress.$invalid || orderForm.orderPhone.$invalid">All required fields must be filled</p>
+			</form>
+		</div>
+
+		<script src="angular.min.js"></script>
+		<script>
+			const app = angular.module("angular2", [])
+			app.controller("mainController", $scope => {
+				$scope.total = 0
+
+				$scope.showGlasses = true
+				$scope.showSneakers = false
+				$scope.showDress = false
+
+				$scope.current = {page : "Glasses"}
+
+
+
+				$scope.glasses1 = {amount: 0, price: 20}
+				$scope.glasses2 = {amount: 0, price: 25}
+
+				$scope.sneakers1 = {amount: 0, price: 200}
+				$scope.sneakers2 = {amount: 0, price: 180}
+
+				$scope.dress1 = {amount: 0, price: 120}
+				$scope.dress2 = {amount: 0, price: 60}
+
+				$scope.add = feed => {
+					feed.amount++
+					$scope.total += feed.price
+				}
+				$scope.remove = feed => {
+					if (feed.amount > 0)
+					{
+						feed.amount--
+						$scope.total -= feed.price
+					}
+				}
+
+				$scope.changeMenu = changeMenu => {
+
+					if($scope.showGlasses == true){
+					    $scope.current.page = "Glasses"
+					}
+					if($scope.showSneakers == true){
+					    $scope.current.page = "Sneakers"
+						alert(current.page)
+					}
+					if($scope.showDress == true){
+					    $scope.current.page = "Dress"
+					}
+				}
+
+				$scope.order = () => {
+					alert("Your clothes will be delivered!")
+				}
+			})
+		</script>
+	</body>
+</html>
